@@ -1,0 +1,33 @@
+{
+	"schemaVersion": 1,
+	"id": "sims",
+	"version": "${version}",
+	"name": "CAS",
+	"description": "Create characters with custom personalities.",
+	"authors": [
+		"halotroop2288"
+	],
+	"contact": {
+		"website": "https://halotroop.com/posts/simsmod",
+		"repo": "https://github.com/halotroop2288/simsmod"
+	},
+	"license": "MIT",
+	"icon": "assets/sims/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"client": [
+			"com.halotroop.sims.client.SimsClient"
+		],
+		"main": [
+			"com.halotroop.sims.SimsMain"
+		]
+	},
+	"mixins": [
+		"sims.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.10.0+build.208",
+		"fabric": "*",
+		"minecraft": "1.16.3"
+	}
+}
