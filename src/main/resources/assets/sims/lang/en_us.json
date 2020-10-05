@@ -25,5 +25,11 @@
 	"gui.cas.gender.reflexive": "Reflexive Singular",
 	"gui.cas.gender.reflexive.tooltip": "Ex: 'They threw the frisbee to themself.'",
 	"gui.cas.finalize": "Finalize",
-	"gui.cas.close": "Scrap Sim"
+	"gui.cas.close": "Scrap Sim",
+	"item.sims.spawn_wand": "Magic Wand",
+	"item.sims.spawn_wand.tooltip": "Create a sim companion with this wand!",
+	"item.sims.spawn_wand.tooltip_advanced.1": "Disclaimer: One sim companion per customer.",
+	"item.sims.spawn_wand.tooltip_advanced.2": "Sim is not guaranteed to be your companion.",
+	"item.sims.spawn_wand.tooltip_advanced.3": "Conditions apply. Results may vary.",
+	"item.sims.spawn_wand.tooltip_advanced.4": "Not available in all biomes. See store for details."
 }

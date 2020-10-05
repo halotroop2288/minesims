@@ -1,0 +1,6 @@
+{
+	"parent": "sims:item/generated",
+	"textures": {
+		"layer0": "sims:item/spawn_wand"
+	}
+}

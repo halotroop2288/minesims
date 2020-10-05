@@ -14,10 +14,14 @@ import java.io.Serializable;
  * A sim's favorite things, to be stored in their SimData.
  */
 public class Favorites implements Serializable {
-	@Nullable public DyeColor favColor = DyeColor.WHITE;
-	@Nullable public Item favFood = Items.APPLE;
-	@Nullable public Block favBlock = Blocks.DIRT;
-	@Nullable public MusicDiscItem favMusic = (MusicDiscItem) Items.MUSIC_DISC_CAT;
+	@Nullable
+	public DyeColor favColor = DyeColor.WHITE;
+	@Nullable
+	public Item favFood = Items.APPLE;
+	@Nullable
+	public Block favBlock = Blocks.DIRT;
+	@Nullable
+	public MusicDiscItem favMusic = (MusicDiscItem) Items.MUSIC_DISC_CAT;
 	
 	public Favorites setFavColor(DyeColor favColor) {
 		this.favColor = favColor;

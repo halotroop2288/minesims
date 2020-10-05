@@ -1,38 +1,51 @@
 package com.halotroop.sims.entity;
 
+import com.halotroop.sims.SimsMain;
+import com.halotroop.sims.client.gui.screen.CASScreen;
 import com.halotroop.sims.entity.simdata.SimData;
+import com.halotroop.sims.inventory.SimInventory;
+import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
+import net.minecraft.client.util.DefaultSkinHelper;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.Inventory;
+import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.PacketByteBuf;
+import net.minecraft.screen.ScreenHandler;
+import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.Nullable;
 
-import java.util.Arrays;
-
-public class SimEntity extends MobEntity implements Inventory {
-	public SimData simData;
+public class SimEntity extends MobEntity {
+	public SimData data;
+	public SimInventory inventory;
 	
-	public SimEntity(EntityType<? extends MobEntity> entityType, World world) {
-		super(entityType, world);
-		this.simData = SimData.GENERIC;
+	public SimEntity(EntityType<? extends SimEntity> type, World world) {
+		super(type, world);
+		this.data = SimData.GENERIC;
+		this.inventory = new SimInventory(this);
+	}
+	
+	public void setPos(Entity entity) {
+		super.setPos(entity.getX(), entity.getY(), entity.getZ());
 	}
 	
 	@Override
 	public void writeCustomDataToTag(CompoundTag tag) {
-		tag.putByteArray("SimData", simData.serialize());
+		tag.putByteArray("SimData", data.serialize());
 		super.writeCustomDataToTag(tag);
 	}
 	
 	@Override
 	public void readCustomDataFromTag(CompoundTag tag) {
-		this.simData = SimData.deserialize(tag.getByteArray("SimData"));
+		this.data = SimData.deserialize(tag.getByteArray("SimData"));
 		super.readCustomDataFromTag(tag);
 	}
-	
-	ItemStack[] outfit = new ItemStack[4];
 	
 	@Override
 	protected void initDataTracker() {
@@ -46,56 +59,10 @@ public class SimEntity extends MobEntity implements Inventory {
 	
 	@Override
 	protected float getSoundPitch() {
-		return MathHelper.clamp(simData.voicePitch, 0, 2);
+		return MathHelper.clamp(data.voicePitch, 0, 2);
 	}
 	
-	@Override
-	public int size() {
-		return outfit.length;
-	}
-	
-	@Override
-	public boolean isEmpty() {
-		for (ItemStack slot : outfit) {
-			if (!slot.isEmpty()) return false;
-		}
-		return true;
-	}
-	
-	@Override
-	public ItemStack getStack(int slot) {
-		return outfit[slot];
-	}
-	
-	@Override
-	public ItemStack removeStack(int slot, int amount) {
-		outfit[slot].decrement(amount);
-		return outfit[slot];
-	}
-	
-	@Override
-	public ItemStack removeStack(int slot) {
-		outfit[slot] = ItemStack.EMPTY;
-		return outfit[slot];
-	}
-	
-	@Override
-	public void setStack(int slot, ItemStack stack) {
-		outfit[slot] = stack;
-	}
-	
-	@Override
-	public void markDirty() {
-	
-	}
-	
-	@Override
-	public boolean canPlayerUse(PlayerEntity player) {
-		return false;
-	}
-	
-	@Override
-	public void clear() {
-		Arrays.fill(outfit, ItemStack.EMPTY);
+	public Identifier getSkinTexture() {
+		return DefaultSkinHelper.getTexture();
 	}
 }

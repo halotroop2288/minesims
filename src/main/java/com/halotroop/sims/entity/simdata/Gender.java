@@ -17,6 +17,19 @@ public class Gender implements Serializable {
 	public String possessivePronoun = "theirs"; // "At least I think it was *theirs*"
 	public String reflexiveSingular = "themself"; // "They threw the frisbee to themself."
 	
+	public Gender(String genderID, String subject, String object, String posDeterminer, String possessive,
+	              String reflexive) {
+		this.genderID = genderID;
+		this.subjectPronoun = subject;
+		this.objectPronoun = object;
+		this.possessiveDeterminer = posDeterminer;
+		this.possessivePronoun = possessive;
+		this.reflexiveSingular = reflexive;
+	}
+	
+	private Gender() {
+	} // GENERIC_UNKNOWN
+	
 	public Gender genderID(String genderID) {
 		this.genderID = genderID;
 		return this;
@@ -46,16 +59,4 @@ public class Gender implements Serializable {
 		this.reflexiveSingular = reflexiveSingular;
 		return this;
 	}
-	
-	public Gender(String genderID, String subject, String object, String posDeterminer, String possessive,
-	              String reflexive) {
-		this.genderID = genderID;
-		this.subjectPronoun = subject;
-		this.objectPronoun = object;
-		this.possessiveDeterminer = posDeterminer;
-		this.possessivePronoun = possessive;
-		this.reflexiveSingular = reflexive;
-	}
-	
-	private Gender() {} // GENERIC_UNKNOWN
 }

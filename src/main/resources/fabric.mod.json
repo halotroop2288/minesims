@@ -2,14 +2,15 @@
 	"schemaVersion": 1,
 	"id": "sims",
 	"version": "${version}",
-	"name": "CAS",
-	"description": "Create characters with custom personalities.",
+	"name": "MineSims",
+	"description": "Create NPCs with custom personalities.\nNon-infringing name pending.\nCustomize your sim's:\n- First and last name\n- Gender and pronouns\n- Personality traits (goals)\n- Body scale\n- Armor set and shield",
 	"authors": [
 		"halotroop2288"
 	],
 	"contact": {
-		"website": "https://halotroop.com/posts/simsmod",
-		"repo": "https://github.com/halotroop2288/simsmod"
+		"homepage": "https://halotroop.com/posts/minesims",
+		"sources": "https://github.com/halotroop2288/minesims",
+		"issues": "https://github.com/halotroop2288/minesimsmod/issues"
 	},
 	"license": "MIT",
 	"icon": "assets/sims/icon.png",

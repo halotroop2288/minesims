@@ -17,8 +17,9 @@ public enum PersonalityTrait {
 	
 	/**
 	 * For personality traits with
+	 *
 	 * @param description The description that will be shown in the tooltip when the trait is hovered over
-	 * @param goals The goals that will be added to the entity if it has this trait
+	 * @param goals       The goals that will be added to the entity if it has this trait
 	 */
 	PersonalityTrait(Text description, Goal... goals) {
 		this(description, goals, null, null);
@@ -26,19 +27,21 @@ public enum PersonalityTrait {
 	
 	/**
 	 * For personality traits with
+	 *
 	 * @param description The description that will be shown in the tooltip when the trait is hovered over
-	 * @param goal The goal that will be added to the entity if it has this trait
-	 * @param conflicts Any other traits that this one is / should be incompatible with
+	 * @param goal        The goal that will be added to the entity if it has this trait
+	 * @param conflicts   Any other traits that this one is / should be incompatible with
 	 */
 	PersonalityTrait(Text description, Goal goal, @Nullable PersonalityTrait... conflicts) {
-		this(description, new Goal[] {goal}, conflicts);
+		this(description, new Goal[]{goal}, conflicts);
 	}
 	
 	/**
 	 * For personality traits with
+	 *
 	 * @param description The description that will be shown in the tooltip when the trait is hovered over
-	 * @param goals The goals that will be added to the entity if it has this trait
-	 * @param conflicts Any other traits that this one is / should be incompatible with
+	 * @param goals       The goals that will be added to the entity if it has this trait
+	 * @param conflicts   Any other traits that this one is / should be incompatible with
 	 */
 	PersonalityTrait(Text description, Goal[] goals, @Nullable PersonalityTrait... conflicts) { // TODO: Add icons
 		this.description = description;

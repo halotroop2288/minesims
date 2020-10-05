@@ -1,7 +1,19 @@
+buildscript {
+    repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath "com.github.jengelman.gradle.plugins:shadow:5.0.0"
+    }
+}
+
 plugins {
     id 'fabric-loom' version '0.5-SNAPSHOT'
-    id 'maven-publish'
 }
+
+apply plugin: "com.github.johnrengelman.shadow"
 
 sourceCompatibility = JavaVersion.VERSION_1_8
 targetCompatibility = JavaVersion.VERSION_1_8
@@ -15,13 +27,27 @@ repositories {
         name = "CottonMC"
         url = "https://server.bbkr.space/artifactory/libs-release"
     }
+    maven {
+        name = "RedstoneParadox Mods"
+        url = "https://dl.bintray.com/redstoneparadox/mods"
+    }
+    maven {
+        name = "JitPack"
+        url = "https://jitpack.io"
+    }
 }
 
-def jij(String dep) {
-    dependencies.modImplementation(dep) {
+// Jar-In-Jar an API mod
+def jijApi(dep) {
+    dependencies.modApi(dep) {
         exclude group: 'net.fabricmc.fabric-api'
     }
     dependencies.include dep
+}
+
+def shadowCompile(dep) {
+    dependencies.shadow(dep)
+    dependencies.compile(dep)
 }
 
 dependencies {
@@ -30,11 +56,18 @@ dependencies {
     modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
     modImplementation "io.github.prospector:modmenu:+"
+    modRuntime "me.shedaniel:RoughlyEnoughItems:+"
+    modRuntime "com.github.SuperCoder7979:databreaker:f072a81"
 
-    def ctnPath = 'io.github.cottonmc'
+    jijApi "com.github.redstoneparadox:OakTree:e97d249"
 
-    jij ctnPath + ":LibGui:3.0.0+1.16.3"
-    jij ctnPath + ".cotton:cotton" + ":1.0.7"
+    shadowCompile "blue.endless:jankson:1.1.0"
+    shadowCompile "com.github.halotroop2288:cotton:abstraction-SNAPSHOT"
+}
+
+shadowJar {
+    classifier("shadow")
+    configurations = [project.configurations.shadow]
 }
 
 processResources {
@@ -60,6 +93,9 @@ task sourcesJar(type: Jar, dependsOn: classes) {
 }
 
 jar {
+    classifier("compile")
+    from compileJava
+    from processResources
     from "LICENSE"
     from "README.md"
 }
