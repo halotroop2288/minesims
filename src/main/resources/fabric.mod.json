@@ -16,6 +16,9 @@
 	"icon": "assets/sims/icon.png",
 	"environment": "*",
 	"entrypoints": {
+		"rei_plugins": [
+			"com.halotroop.sims.client.rei.REIPlugin"
+		],
 		"client": [
 			"com.halotroop.sims.client.SimsClient"
 		],

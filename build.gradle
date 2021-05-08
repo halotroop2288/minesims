@@ -56,7 +56,7 @@ dependencies {
     modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
     modImplementation "io.github.prospector:modmenu:+"
-    modRuntime "me.shedaniel:RoughlyEnoughItems:+"
+    modImplementation "me.shedaniel:RoughlyEnoughItems:+"
     modRuntime "com.github.SuperCoder7979:databreaker:f072a81"
 
     jijApi "com.github.redstoneparadox:OakTree:e97d249"
@@ -66,7 +66,7 @@ dependencies {
 }
 
 shadowJar {
-    classifier("shadow")
+    classifier = "shadow"
     configurations = [project.configurations.shadow]
 }
 

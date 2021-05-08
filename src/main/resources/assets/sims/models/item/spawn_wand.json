@@ -1,5 +1,5 @@
 {
-	"parent": "sims:item/generated",
+	"parent": "minecraft:item/generated",
 	"textures": {
 		"layer0": "sims:item/spawn_wand"
 	}
